@@ -117,6 +117,7 @@ pydantic_core==2.18.3
 Pygments==2.18.0
 PyJWT==2.8.0
 pyparsing==3.1.2
+python-3.10.1
 python-dateutil==2.9.0.post0
 python-decouple==3.8
 python-dotenv==1.0.1
