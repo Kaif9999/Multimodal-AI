@@ -4,6 +4,9 @@ import replicate
 import requests
 from chainlit import user_session
 from decouple import config
+import os
+
+REPLICATE_API_KEY = os.getenv("REPLICATE_API_KEY")
 
 # On chat start
 @cl.on_chat_start
