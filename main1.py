@@ -12,24 +12,28 @@ REPLICATE_MODEL_VERSION = config('REPLICATE_MODEL_VERSION')
 
 # On chat start
 @cl.on_chat_start
+# On chat start
+@cl.on_chat_start
 async def on_chat_start():
-    # Message history
+    # Initialize message history
     message_history = []
     user_session.set("MESSAGE_HISTORY", message_history)
-    # Replicate client
-    client = replicate.Client(api_token=REPLICATE_API_KEY)
+    
+    # Initialize Replicate client with the correct API token
+    api_token = config("REPLICATE_API_KEY")
+    client = replicate.Client(api_token=api_token)
     user_session.set("REPLICATE_CLIENT", client)
+
 
 # Upload image to Replicate
 def upload_image(image_path):
     # Get upload URL from Replicate (filename is hardcoded, but not relevant)
     upload_response = requests.post(
         "https://dreambooth-api-experimental.replicate.com/v1/upload/filename.png",
-        headers={"Authorization": f"Token {REPLICATE_API_KEY}"}
+        headers={"Authorization": f"Token {config('REPLICATE_API_KEY')}"},
     ).json()
     # Read file
-    with open(image_path, "rb") as file:
-        file_binary = file.read()
+    file_binary = open(image_path, "rb").read()
     # Upload file to Replicate
     requests.put(upload_response["upload_url"], headers={'Content-Type': 'image/png'}, data=file_binary)
     # Return URL
@@ -42,7 +46,7 @@ async def main(message: cl.Message):
     # Send empty message for loading
     msg = cl.Message(
         content=f"",
-        author="Vision Chat",
+        author="mvp assistant",
     )
     await msg.send()
 
@@ -71,7 +75,7 @@ async def main(message: cl.Message):
             "top_p": 1,
             "prompt": prompt,
             "max_tokens": 1024,
-            "temperature": 0.5,
+            "temperature": 0.6,
         }
     else:
         # Set input without image and with history
@@ -84,29 +88,25 @@ async def main(message: cl.Message):
         }
 
     # Call Replicate
-    try:
-        output = client.run(
-            f"{REPLICATE_MODEL}:{REPLICATE_MODEL_VERSION}",
-            input=input_vision
-        )
+    output = client.run(
+        f"{config('REPLICATE_MODEL')}:{config('REPLICATE_MODEL_VERSION')}",
+        input=input_vision
+    )
 
-        # Process the output
-        ai_message = ""
-        for item in output:
-            # Stream token by token
-            await msg.stream_token(item)
-            # Sleep to provide a better user experience
-            time.sleep(0.1)
-            # Append to the AI message
-            ai_message += item
-        # Send the message
-        await msg.send()
+    # Process the output
+    ai_message = ""
+    for item in output:
+        # Stream token by token
+        await msg.stream_token(item)
+        # Sleep to provide a better user experience
+        time.sleep(0.1)
+        # Append to the AI message
+        ai_message += item
+    # Send the message
+    await msg.send()
 
-        # Add to history
-        user_text = message.content
-        message_history.append("User: " + user_text)
-        message_history.append("Assistant:" + ai_message)
-        user_session.set("MESSAGE_HISTORY", message_history)
-    except replicate.exceptions.ReplicateError as e:
-        print(f"Error generating image: {e}")
-        await msg.update(content="Failed to generate image.")
+    # Add to history
+    user_text = message.content
+    message_history.append("User: " + user_text)
+    message_history.append("Assistant:" + ai_message)
+    user_session.set("MESSAGE_HISTORY", message_history)
