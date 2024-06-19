@@ -82,8 +82,8 @@ Multimodal-AI/
 ├── main1.py                 # Main script to run the chatbot
 ├── requirements.txt        # Python dependencies
 ├── README.md               # Project documentation
-└── chainlit.md             #Text that displays on the frontend of the Chatbot
-
+├── chainlit.md             # Text that displays on the frontend of the Chatbot
+└── test_main1.py           # Performs Unit Tests and Mock Test on main1.py file
 ```
 
 ## Code Explanation
