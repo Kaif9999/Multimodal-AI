@@ -1,12 +1,10 @@
 # Multimodal-AI
 
-Here's a comprehensive `README.md` file for your chatbot project. This document will help others understand your codebase and contribute effectively.
+Here's a comprehensive `README.md` file for you all to get started with this concept of Multimodality AI project
 
 ---
 
-# Vision Chatbot
-
-Vision Chatbot is an AI-powered assistant capable of performing image recognition and text generation using the Replicate API. The chatbot interacts with users, processes images, and generates text responses based on user input.
+MVP Chatbot is an AI-powered chatbot capable of performing image recognition and text generation using the Replicate API which uses MIstral 7B under the hood. The chatbot interacts with users, processes images, and generates text responses based on user input.
 
 ## Features
 
@@ -21,15 +19,16 @@ Vision Chatbot is an AI-powered assistant capable of performing image recognitio
 2. [Configuration](#configuration)
 3. [Usage](#usage)
 4. [Project Structure](#project-structure)
-5. [Contributing](#contributing)
-6. [License](#license)
+5. [Future Scope](#future-scope)
+6. [Contributing](#contributing)
+7. [License](#license)
 
 ## Installation
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/vision-chatbot.git
-    cd vision-chatbot
+    git clone https://github.com/Kaif9999/Multimodal-AI
+    cd Mulimodal-AI
     ```
 
 2. **Create a virtual environment**:
@@ -66,7 +65,7 @@ Vision Chatbot is an AI-powered assistant capable of performing image recognitio
 
 1. **Run the chatbot**:
     ```bash
-    python main.py
+    python main1.py
     ```
 
 2. **Interacting with the chatbot**:
@@ -76,12 +75,15 @@ Vision Chatbot is an AI-powered assistant capable of performing image recognitio
 ## Project Structure
 
 ```plaintext
-vision-chatbot/
+Multimodal-AI/
 ├── venv/                   # Virtual environment directory
-├── .env                    # Environment variables
-├── main.py                 # Main script to run the chatbot
+├── .env                     # Environment Variables
+├── .gitignore                    # gitignore file
+├── main1.py                 # Main script to run the chatbot
 ├── requirements.txt        # Python dependencies
-└── README.md               # Project documentation
+├── README.md               # Project documentation
+└── chainlit.md             #Text that displays on the frontend of the Chatbot
+
 ```
 
 ## Code Explanation
@@ -159,6 +161,12 @@ The main script initializes the chatbot, sets up the Replicate client, processes
         message_history.append(f"Assistant: {ai_message}")
         user_session.set("MESSAGE_HISTORY", message_history)
     ```
+
+## Future Scope 
+1. Implementation of image generation function
+2. To be able to give input in multiple languages, and get output in your desired language
+3. Implementation of text to speech
+4. Looking for integrating Gemini-Flash for image and text generation
 
 ## Contributing
 
