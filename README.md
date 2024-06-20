@@ -21,7 +21,6 @@ MVP Chatbot is an AI-powered chatbot capable of performing image recognition and
 4. [Project Structure](#project-structure)
 5. [Future Scope](#future-scope)
 6. [Contributing](#contributing)
-7. [License](#license)
 
 ## Installation
 
@@ -188,10 +187,3 @@ Contributions are welcome! Please follow these steps to contribute:
     ```
 6. **Create a Pull Request**.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to update this `README.md` with any additional details specific to your project. This should help others understand the structure and contribute effectively.
