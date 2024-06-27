@@ -12,8 +12,6 @@ REPLICATE_MODEL_VERSION = config('REPLICATE_MODEL_VERSION')
 
 # On chat start
 @cl.on_chat_start
-# On chat start
-@cl.on_chat_start
 async def on_chat_start():
     # Initialize message history
     message_history = []
