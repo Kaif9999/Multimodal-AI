@@ -21,6 +21,8 @@ async def on_chat_start():
     
     # Initialize Replicate client with the correct API token
     api_token = config("REPLICATE_API_KEY")
+    if not api_token:
+        raise ValueError("Replicate API key is not set.")
     client = replicate.Client(api_token=api_token)
     user_session.set("REPLICATE_CLIENT", client)
 
@@ -29,7 +31,7 @@ def upload_image(image_path):
     # Get upload URL from Replicate (filename is hardcoded, but not relevant)
     upload_response = requests.post(
         "https://dreambooth-api-experimental.replicate.com/v1/upload/filename.png",
-        headers={"Authorization": f"Token {config('REPLICATE_API_KEY')}"},
+        headers={"Authorization": f"Token {config('REPLICATE_API_KEY')}"},  # Ensure API key is included here
     ).json()
     # Read file
     file_binary = open(image_path, "rb").read()
@@ -45,7 +47,7 @@ def generate_image(prompt):
     input_params = {
         "width": 768,
         "height": 768,
-        "prompt": prompt,
+        "prompt": prompt,  # Use the prompt for image generation
         "refine": "expert_ensemble_refiner",
         "apply_watermark": False,
         "num_inference_steps": 25
@@ -69,9 +71,8 @@ async def main(message: cl.Message):
     # Processing images (if any)
     images = [file for file in message.elements if "image" in file.mime]
 
-    # Setup prompt
-    prompt = """You are a helpful Assistant that can help me with image recognition and text generation.\n\n"""
-    prompt += """Prompt: """ + message.content
+    # Setup prompt based on user's message content
+    prompt = message.content  # Directly use user's message content as prompt
 
     # Retrieve message history
     message_history = user_session.get("MESSAGE_HISTORY")
@@ -106,7 +107,7 @@ async def main(message: cl.Message):
     # Check if the message is for image generation
     if "generate image" in message.content.lower():
         # Generate image based on the prompt
-        output = generate_image(message.content)
+        output = generate_image(prompt)
         # Assuming the output is a list of image URLs
         image_url = output[0]
         ai_message = f"Here is the generated image: {image_url}"
