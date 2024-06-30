@@ -4,7 +4,11 @@ import replicate
 import requests
 from chainlit import user_session
 from decouple import config
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+#user have to create a .env file and add the following variables
 # Load API key and model details from environment variables
 REPLICATE_API_KEY = config('REPLICATE_API_KEY')
 REPLICATE_TEXT_MODEL = config('REPLICATE_TEXT_MODEL')
