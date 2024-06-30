@@ -9,6 +9,7 @@ MVP Chatbot is an AI-powered chatbot capable of performing image recognition and
 ## Features
 
 - Image recognition
+- Image generation
 - Text generation
 - Interactive chat experience
 - Easy to set up and extend
