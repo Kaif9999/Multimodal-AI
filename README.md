@@ -66,11 +66,17 @@ MVP Chatbot is an AI-powered chatbot capable of performing image recognition and
 ## Usage
 
 1. **Run the chatbot**:
+
+   #### Step 1
     ```bash
     python main1.py
     ```
+   #### Step 2
+    ```bash
+    chainlit run main1.py
+    ```
 
-2. **Interacting with the chatbot**:
+3. **Interacting with the chatbot**:
     - Start a chat and send messages.
     - Upload images for recognition.
 
