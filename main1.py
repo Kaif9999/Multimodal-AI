@@ -73,7 +73,7 @@ async def main(message: cl.Message):
     images = [file for file in message.elements if "image" in file.mime]
 
     # Setup prompt based on user's message content
-    prompt = message.content  # Directly use user's message content as prompt
+    prompt = message.content.lower() # Directly use user's message content as prompt
 
     # Retrieve message history
     message_history = user_session.get("MESSAGE_HISTORY")
@@ -93,7 +93,7 @@ async def main(message: cl.Message):
             "top_p": 1,
             "prompt": prompt,
             "max_tokens": 1024,
-            "temperature": 0.6,
+            "temperature": 0.5,
         }
     else:
         # Set input without image and with history
