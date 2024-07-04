@@ -46,8 +46,8 @@ def upload_image(image_path):
 def generate_image(prompt):
     client = user_session.get("REPLICATE_CLIENT")
     input_params = {
-        "width": 768,
-        "height": 768,
+        "width": 1024,
+        "height": 1024,
         "prompt": prompt,  # Use the prompt for image generation
         "refine": "expert_ensemble_refiner",
         "apply_watermark": False,
@@ -65,7 +65,7 @@ async def main(message: cl.Message):
     # Send empty message for loading
     msg = cl.Message(
         content=f"",
-        author="mvp assistant",
+        author="",
     )
     await msg.send()
 
