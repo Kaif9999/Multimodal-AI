@@ -56,9 +56,11 @@ MVP Chatbot is an AI-powered chatbot capable of performing image recognition and
 1. **Set up environment variables**:
     Create a `.env` file in the root directory and add the following variables:
     ```env
-    REPLICATE_API_KEY=your_replicate_api_key
-    REPLICATE_MODEL=your_replicate_model
-    REPLICATE_MODEL_VERSION=your_replicate_model_version
+    REPLICATE_API_KEY = <'Your Replicate API key'>
+    REPLICATE_TEXT_MODEL = yorickvp/llava-v1.6-mistral-7b
+    REPLICATE_TEXT_MODEL_VERSION = 19be067b589d0c46689ffa7cc3ff321447a441986a7694c01225973c2eafc874
+    REPLICATE_IMAGE_MODEL = stability-ai/sdxl
+    REPLICATE_IMAGE_MODEL_VERSION = 7762fd07cf82c948538e41f63f77d685e02b063e37e496e96eefd46c929f9bdc
     ```
 
 ## Usage
