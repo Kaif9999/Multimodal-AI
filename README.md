@@ -1,4 +1,4 @@
-# Multimodal-AI
+# Open-source Multimodal 
 
 Here's a comprehensive `README.md` file for you all to get started with this concept of Multimodality AI project
 
