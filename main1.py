@@ -27,6 +27,10 @@ async def on_chat_start():
     client = replicate.Client(api_token=api_token)
     user_session.set("REPLICATE_CLIENT", client)
 
+@cl.on_chat_end
+def end():
+    print("Chat ended")    
+
 # Upload image to Replicate
 def upload_image(image_path):
     # Get upload URL from Replicate (filename is hardcoded, but not relevant)
