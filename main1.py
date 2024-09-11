@@ -1,3 +1,4 @@
+#import all the neccessary libraries for the model
 import time
 import chainlit as cl
 import replicate
